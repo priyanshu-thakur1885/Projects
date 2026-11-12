@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f6f7fb">
+    <meta name="description" content="Find your next opportunity or the right person for your team.">
+    <title>Pathway — Find what’s next</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css?v=3">
+    <script src="/app.js?v=3" defer></script>
+  </head>
+  <body>
+    <main id="app">
+      <section class="auth-shell" id="auth-view">
+        <div class="auth-intro">
+          <a class="brand brand-light" href="/" aria-label="Pathway home"><span class="brand-mark">p</span> pathway</a>
+          <div class="auth-copy">
+            <p class="eyebrow">YOUR NEXT CHAPTER STARTS HERE</p>
+            <h1>Find work<br>that moves you.</h1>
+            <p>Meaningful internships. Better opportunities.<br>A clearer path to what comes next.</p>
+          </div>
+          <div class="auth-bottom"><span class="sun-mark">✳</span> A thoughtful space for growing careers</div>
+          <div class="decor decor-one"></div><div class="decor decor-two"></div>
+        </div>
+        <div class="auth-panel">
+          <div class="auth-form-wrap">
+            <div class="mobile-brand"><a class="brand" href="/"><span class="brand-mark">p</span> pathway</a></div>
+            <p class="eyebrow" id="auth-eyebrow">WELCOME BACK</p>
+            <h2 id="auth-heading">Good to see you.</h2>
+            <p class="subtle" id="auth-subheading">Sign in and keep moving forward.</p>
+            <div class="auth-tabs" role="tablist" aria-label="Account options">
+              <button class="auth-tab active" type="button" data-auth-mode="login">Sign in</button>
+              <button class="auth-tab" type="button" data-auth-mode="register">Create account</button>
+            </div>
+            <form id="auth-form">
+              <label class="field" id="name-field" hidden><span>Your name</span><input name="name" autocomplete="name" placeholder="How should we call you?"></label>
+              <label class="field" id="role-field" hidden>
+                <span>I’m joining as</span>
+                <select name="role"><option value="student">Student / job seeker</option><option value="recruiter">Recruiter</option></select>
+              </label>
+              <label class="field"><span>Email address</span><input name="email" type="email" autocomplete="email" placeholder="you@example.com" required></label>
+              <label class="field"><span>Password</span><input name="password" type="password" autocomplete="current-password" placeholder="At least 8 characters" minlength="8" required></label>
+              <p class="form-message" id="auth-message" role="alert"></p>
+              <button class="button button-primary button-wide" type="submit" id="auth-submit">Sign in <span>→</span></button>
+            </form>
+            <p class="auth-footnote">Your information stays yours.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="workspace" id="workspace-view" hidden>
+        <aside class="sidebar">
+          <a class="brand" href="/"><span class="brand-mark">p</span> pathway</a>
+          <div class="side-label">OPPORTUNITIES</div>
+          <nav class="side-nav" aria-label="Portal navigation">
+            <button class="nav-item active" type="button" data-view="jobs"><span class="nav-icon">⌕</span> Browse jobs</button>
+            <button class="nav-item student-nav" type="button" data-view="applications"><span class="nav-icon">▤</span> My applications <span class="nav-count" id="application-count">0</span></button>
+            <button class="nav-item recruiter-nav" type="button" data-view="my-jobs"><span class="nav-icon">▣</span> My listings</button>
+            <button class="nav-item recruiter-nav" type="button" data-view="applicants"><span class="nav-icon">♙</span> Applicants</button>
+            <button class="nav-item admin-nav" type="button" data-view="moderation"><span class="nav-icon">✓</span> Moderation</button>
+          </nav>
+          <div class="sidebar-bottom">
+            <div class="profile-avatar" id="profile-avatar">P</div>
+            <div class="profile-details"><strong id="profile-name">Your name</strong><span id="profile-role">Student</span></div>
+            <button class="icon-button" id="profile-button" type="button" aria-label="Edit profile" title="Edit profile">⚙</button>
+            <button class="icon-button" id="logout-button" type="button" aria-label="Sign out" title="Sign out">↗</button>
+          </div>
+        </aside>
+
+        <section class="main-panel">
+          <header class="topbar"><p><span class="live-dot"></span> Your next step is closer than you think</p><span class="today-label" id="today-label"></span></header>
+          <div class="content">
+            <div class="welcome-row">
+              <div><p class="eyebrow" id="welcome-date">YOUR SPACE</p><h1 id="welcome-heading">Find your next step.</h1><p class="subtle" id="welcome-subtitle">Explore opportunities chosen for where you want to go.</p></div>
+              <button class="button button-primary" id="create-job-button" type="button" hidden>Post a listing <span>＋</span></button>
+            </div>
+
+            <section class="view-panel" id="jobs-view">
+              <div class="list-heading">
+                <div><p class="eyebrow">OPEN OPPORTUNITIES</p><h2>Explore roles <span id="jobs-count">0</span></h2></div>
+                <div class="list-tools">
+                  <label class="search-box"><span>⌕</span><input id="job-search" type="search" placeholder="Role, company, location…" aria-label="Search listings"></label>
+                  <select class="filter-select" id="type-filter" aria-label="Filter by role type"><option value="">All types</option><option value="internship">Internship</option><option value="full-time">Full-time</option><option value="part-time">Part-time</option><option value="contract">Contract</option></select>
+                </div>
+              </div>
+              <div class="job-grid" id="jobs-list" aria-live="polite"></div>
+              <div class="empty-state" id="jobs-empty" hidden><div class="empty-illustration">✳</div><h3>No opportunities just yet.</h3><p>Try a different search or check back soon.</p></div>
+            </section>
+
+            <section class="view-panel" id="applications-view" hidden>
+              <div class="list-heading"><div><p class="eyebrow">YOUR PROGRESS</p><h2>My applications <span id="my-applications-count">0</span></h2></div><button class="icon-button refresh-button" type="button" data-refresh="applications" aria-label="Refresh applications">↻</button></div>
+              <div class="stack-list" id="my-applications-list"></div>
+              <div class="empty-state" id="my-applications-empty" hidden><div class="empty-illustration">✳</div><h3>Your next opportunity is out there.</h3><p>Apply to a role you like and track its progress here.</p></div>
+            </section>
+
+            <section class="view-panel" id="my-jobs-view" hidden>
+              <div class="list-heading"><div><p class="eyebrow">YOUR TEAM’S OPPORTUNITIES</p><h2>My listings <span id="my-jobs-count">0</span></h2></div><button class="button button-primary" type="button" data-open-job>Post a listing <span>＋</span></button></div>
+              <div class="stack-list" id="my-jobs-list"></div>
+              <div class="empty-state" id="my-jobs-empty" hidden><div class="empty-illustration">✳</div><h3>Make your next great hire.</h3><p>Post a role and find the right person for your team.</p></div>
+            </section>
+
+            <section class="view-panel" id="applicants-view" hidden>
+              <div class="list-heading"><div><p class="eyebrow">PEOPLE READY TO GROW</p><h2>Applicants <span id="applicants-count">0</span></h2></div><button class="icon-button refresh-button" type="button" data-refresh="applications" aria-label="Refresh applicants">↻</button></div>
+              <div class="stack-list" id="applicants-list"></div>
+              <div class="empty-state" id="applicants-empty" hidden><div class="empty-illustration">✳</div><h3>Good candidates take time.</h3><p>Applications for your listings will show up here.</p></div>
+            </section>
+
+            <section class="view-panel" id="moderation-view" hidden>
+              <div class="list-heading"><div><p class="eyebrow">KEEP THE MARKETPLACE TRUSTWORTHY</p><h2>Listing moderation <span id="moderation-count">0</span></h2></div><button class="icon-button refresh-button" type="button" data-refresh="moderation" aria-label="Refresh listings">↻</button></div>
+              <div class="stack-list" id="moderation-list"></div>
+              <div class="empty-state" id="moderation-empty" hidden><div class="empty-illustration">✳</div><h3>All caught up.</h3><p>Listings waiting for review will appear here.</p></div>
+            </section>
+            <footer class="content-footer">A little closer to what’s next <span>✳</span></footer>
+          </div>
+        </section>
+      </section>
+
+      <dialog class="dialog" id="apply-dialog">
+        <form id="apply-form" method="dialog">
+          <div class="dialog-heading"><div><p class="eyebrow">TAKE THE NEXT STEP</p><h2 id="apply-title">Apply to this role</h2></div><button class="icon-button" type="button" data-close-dialog aria-label="Close">×</button></div>
+          <input type="hidden" name="jobId">
+          <label class="field"><span>Resume URL <em>optional</em></span><input name="resumeUrl" type="url" placeholder="https://…"></label>
+          <label class="field"><span>Short note <em>optional</em></span><textarea name="coverLetter" rows="5" maxlength="3000" placeholder="What makes this opportunity a good fit?"></textarea></label>
+          <p class="form-message" id="apply-message" role="alert"></p>
+          <button class="button button-primary button-wide" type="submit">Send application <span>→</span></button>
+        </form>
+      </dialog>
+
+      <dialog class="dialog dialog-wide" id="job-dialog">
+        <form id="job-form" method="dialog">
+          <div class="dialog-heading"><div><p class="eyebrow">HELP SOMEONE FIND THEIR NEXT STEP</p><h2 id="job-dialog-title">Post an opportunity</h2></div><button class="icon-button" type="button" data-close-dialog aria-label="Close">×</button></div>
+          <input type="hidden" name="jobId">
+          <div class="form-grid">
+            <label class="field"><span>Role title</span><input name="title" maxlength="120" placeholder="e.g. Product Design Intern" required></label>
+            <label class="field"><span>Company</span><input name="company" maxlength="120" placeholder="Your organization" required></label>
+            <label class="field"><span>Location</span><input name="location" maxlength="120" placeholder="City, country or remote" required></label>
+            <label class="field"><span>Role type</span><select name="type" required><option value="internship">Internship</option><option value="full-time">Full-time</option><option value="part-time">Part-time</option><option value="contract">Contract</option></select></label>
+            <label class="field"><span>Workplace</span><select name="workplace"><option value="onsite">On-site</option><option value="hybrid">Hybrid</option><option value="remote">Remote</option></select></label>
+            <label class="field"><span>Experience level</span><select name="experienceLevel"><option value="entry">Entry level</option><option value="intermediate">Intermediate</option><option value="any">Any experience</option></select></label>
+            <label class="field"><span>Monthly stipend (INR) <em>optional</em></span><input name="stipend" type="number" min="1" max="100000000" step="1" inputmode="numeric" placeholder="e.g. 25000 per month"></label>
+            <label class="field"><span>Application deadline <em>optional</em></span><input name="closingDate" type="date"></label>
+            <label class="field field-full"><span>Description</span><textarea name="description" rows="5" minlength="20" maxlength="8000" placeholder="What will this person work on?" required></textarea></label>
+            <label class="field field-full"><span>Requirements <em>optional</em></span><textarea name="requirements" rows="3" maxlength="4000" placeholder="Skills, qualifications or experience"></textarea></label>
+          </div>
+          <p class="form-message" id="job-message" role="alert"></p>
+          <button class="button button-primary button-wide" type="submit" id="job-submit">Submit for review <span>→</span></button>
+          <p class="dialog-note">New and edited listings are reviewed by an admin before appearing publicly.</p>
+        </form>
+      </dialog>
+
+      <dialog class="dialog" id="profile-dialog">
+        <form id="profile-form" method="dialog">
+          <div class="dialog-heading"><div><p class="eyebrow">MAKE IT YOURS</p><h2>Edit your profile</h2></div><button class="icon-button" type="button" data-close-dialog aria-label="Close">×</button></div>
+          <label class="field"><span>Phone</span><input name="phone" maxlength="30" placeholder="Phone number"></label>
+          <label class="field"><span>Location</span><input name="location" maxlength="120" placeholder="City, country"></label>
+          <div class="student-profile-fields">
+            <label class="field"><span>Professional headline</span><input name="headline" maxlength="160" placeholder="e.g. Computer science student"></label>
+            <label class="field"><span>Resume URL</span><input name="resumeUrl" type="url" placeholder="https://…"></label>
+            <label class="field"><span>Skills <em>separate with commas</em></span><input name="skills" placeholder="Research, Python, Communication"></label>
+            <label class="field"><span>Education</span><textarea name="education" rows="2" maxlength="1000"></textarea></label>
+            <label class="field"><span>Experience</span><textarea name="experience" rows="3" maxlength="2000"></textarea></label>
+          </div>
+          <div class="recruiter-profile-fields" hidden>
+            <label class="field"><span>Company name</span><input name="companyName" maxlength="120"></label>
+            <label class="field"><span>Company website</span><input name="companyWebsite" type="url" placeholder="https://…"></label>
+            <label class="field"><span>About the company</span><textarea name="companyDescription" rows="4" maxlength="2000"></textarea></label>
+          </div>
+          <p class="form-message" id="profile-message" role="alert"></p>
+          <button class="button button-primary button-wide" type="submit">Save profile <span>→</span></button>
+        </form>
+      </dialog>
+
+      <div class="toast" id="toast" role="status"></div>
+    </main>
+  </body>
+</html>

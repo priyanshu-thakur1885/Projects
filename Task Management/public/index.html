@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f6f7fb">
+    <meta name="description" content="A calm, focused space to plan and finish your work.">
+    <title>Daymark — Make room for what matters</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <main id="app">
+      <section class="auth-shell" id="auth-view">
+        <div class="auth-intro">
+          <a class="brand brand-light" href="/" aria-label="Daymark home"><span class="brand-mark">d</span> daymark</a>
+          <div class="auth-copy">
+            <p class="eyebrow">YOUR DAY, WITH INTENTION</p>
+            <h1>Make room for<br>what matters.</h1>
+            <p>A little more focus. A little less noise.<br>Your next good day starts here.</p>
+          </div>
+          <div class="auth-bottom"><span class="sun-mark">✳</span> Thoughtfully simple task management</div>
+          <div class="decor decor-one"></div><div class="decor decor-two"></div>
+        </div>
+        <div class="auth-panel">
+          <div class="auth-form-wrap">
+            <div class="mobile-brand"><a class="brand" href="/"><span class="brand-mark">d</span> daymark</a></div>
+            <p class="eyebrow" id="auth-eyebrow">WELCOME BACK</p>
+            <h2 id="auth-heading">Good to see you.</h2>
+            <p class="subtle" id="auth-subheading">Sign in and pick up where you left off.</p>
+            <div class="auth-tabs" role="tablist" aria-label="Account options">
+              <button class="auth-tab active" type="button" data-auth-mode="login">Sign in</button>
+              <button class="auth-tab" type="button" data-auth-mode="register">Create account</button>
+            </div>
+            <form id="auth-form">
+              <label class="field" id="name-field" hidden>
+                <span>Your name</span>
+                <input name="name" autocomplete="name" placeholder="How should we call you?">
+              </label>
+              <label class="field">
+                <span>Email address</span>
+                <input name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+              </label>
+              <label class="field">
+                <span>Password</span>
+                <input name="password" type="password" autocomplete="current-password" placeholder="At least 8 characters" minlength="8" required>
+              </label>
+              <p class="form-message" id="auth-message" role="alert"></p>
+              <button class="button button-primary button-wide" type="submit" id="auth-submit">Sign in <span>→</span></button>
+            </form>
+            <p class="auth-footnote">Your work is yours. Always.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="workspace" id="workspace-view" hidden>
+        <aside class="sidebar">
+          <a class="brand" href="/"><span class="brand-mark">d</span> daymark</a>
+          <div class="side-label">WORKSPACE</div>
+          <nav class="side-nav" aria-label="Task filters">
+            <button class="nav-item active" data-filter="all"><span class="nav-icon">◫</span> All tasks <span class="nav-count" id="all-count">0</span></button>
+            <button class="nav-item" data-filter="pending"><span class="nav-icon">◷</span> To do <span class="nav-count" id="pending-count">0</span></button>
+            <button class="nav-item" data-filter="completed"><span class="nav-icon">✓</span> Completed <span class="nav-count" id="completed-count">0</span></button>
+          </nav>
+          <div class="sidebar-bottom">
+            <div class="profile-avatar" id="profile-avatar">D</div>
+            <div class="profile-details"><strong id="profile-name">Your name</strong><span id="profile-email"></span></div>
+            <button class="icon-button logout-button" id="logout-button" aria-label="Sign out" title="Sign out">↗</button>
+          </div>
+        </aside>
+        <section class="main-panel">
+          <header class="topbar">
+            <p><span class="live-dot"></span> A calmer way to get things done</p>
+            <span class="today-label" id="today-label"></span>
+          </header>
+          <div class="content">
+            <div class="welcome-row">
+              <div><p class="eyebrow" id="welcome-date">YOUR SPACE</p><h1 id="welcome-heading">Good morning.</h1><p class="subtle">Small steps add up. What would you like to move forward?</p></div>
+              <div class="progress-card"><div class="progress-top"><span>Daily progress</span><strong id="progress-value">0%</strong></div><div class="progress-track"><span id="progress-bar"></span></div><p id="progress-caption">A fresh start. You’ve got this.</p></div>
+            </div>
+
+            <section class="task-composer">
+              <div class="composer-heading"><div class="composer-symbol">＋</div><div><h2 id="composer-title">Add a task</h2><p>Get it out of your head and onto your list.</p></div></div>
+              <form id="task-form" class="task-form">
+                <input type="hidden" name="taskId">
+                <label class="field"><span>Task title</span><input name="title" maxlength="120" placeholder="What needs to get done?" required></label>
+                <div class="composer-row">
+                  <label class="field"><span>Details <em>optional</em></span><input name="description" maxlength="2000" placeholder="Add a little context…"></label>
+                  <label class="field due-field"><span>Due date <em>optional</em></span><input name="dueDate" type="date"></label>
+                  <button class="button button-primary add-button" type="submit" id="task-submit">Add task <span>＋</span></button>
+                  <button class="button button-quiet cancel-edit" id="cancel-edit" type="button" hidden>Cancel</button>
+                </div>
+                <p class="form-message" id="task-message" role="alert"></p>
+              </form>
+            </section>
+
+            <div class="list-heading"><div><p class="eyebrow">YOUR FOCUS</p><h2 id="list-title">All tasks <span id="list-count">0</span></h2></div><div class="list-tools"><label class="search-box"><span>⌕</span><input id="search-input" type="search" placeholder="Find a task…" aria-label="Search tasks"></label><button class="icon-button refresh-button" id="refresh-button" aria-label="Refresh tasks" title="Refresh">↻</button></div></div>
+            <div id="task-list" class="task-list" aria-live="polite"></div>
+            <div id="empty-state" class="empty-state" hidden><div class="empty-illustration">✳</div><h3 id="empty-title">A little space to begin.</h3><p id="empty-description">Add your first task above. Future you says thanks.</p></div>
+            <footer class="content-footer">Made for progress, not perfection <span>✳</span></footer>
+          </div>
+        </section>
+      </section>
+      <div class="toast" id="toast" role="status"></div>
+    </main>
+  </body>
+</html>

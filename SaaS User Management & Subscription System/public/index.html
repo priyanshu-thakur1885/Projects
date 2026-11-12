@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#10172a">
+    <title>Orbit SaaS | Account Console</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <a class="brand" href="/">orbit<span>.</span></a>
+        <div id="session" class="session">
+          <span id="session-label">Not signed in</span>
+          <button id="logout" class="button button-quiet hidden" type="button">Sign out</button>
+        </div>
+      </header>
+
+      <section id="auth-panel" class="auth-layout">
+        <div class="intro">
+          <p class="eyebrow">SAAS ACCOUNT PLATFORM</p>
+          <h1>Your work,<br><span>in orbit.</span></h1>
+          <p class="muted">A secure account space for your profile, plan, and workspace features.</p>
+          <div class="trust"><span class="pulse"></span> Secure session · Private account</div>
+        </div>
+        <form id="auth-form" class="card auth-card">
+          <div class="segmented">
+            <button type="button" class="segment active" data-mode="login">Sign in</button>
+            <button type="button" class="segment" data-mode="register">Create account</button>
+          </div>
+          <p class="eyebrow" id="auth-eyebrow">WELCOME BACK</p>
+          <h2 id="auth-title">Sign in to Orbit</h2>
+          <label>Email address<input name="email" type="email" autocomplete="email" required maxlength="254"></label>
+          <label>Password<input name="password" type="password" autocomplete="current-password" required minlength="12" maxlength="128"></label>
+          <button class="button button-primary full" type="submit" id="auth-submit">Sign in</button>
+          <button class="text-button" type="button" id="forgot">Forgot password?</button>
+          <p class="notice" id="auth-message" role="status"></p>
+        </form>
+      </section>
+
+      <section id="app-panel" class="hidden">
+        <div class="welcome">
+          <div><p class="eyebrow">ACCOUNT CONSOLE</p><h1>Good to have you here.</h1><p class="muted" id="welcome-email"></p></div>
+          <span id="role-pill" class="pill">MEMBER</span>
+        </div>
+        <nav class="tabs">
+          <button class="tab active" data-view="account">My account</button>
+          <button class="tab" data-view="plans">Plans</button>
+          <button class="tab hidden" id="admin-tab" data-view="admin">Admin</button>
+        </nav>
+
+        <section class="view" id="view-account">
+          <div class="grid">
+            <article class="card">
+              <p class="eyebrow">PROFILE</p><h2>Account details</h2>
+              <dl class="details"><div><dt>Email</dt><dd id="profile-email">—</dd></div><div><dt>Member since</dt><dd id="profile-created">—</dd></div><div><dt>Account status</dt><dd id="profile-status">—</dd></div></dl>
+            </article>
+            <article class="card plan-card">
+              <p class="eyebrow">CURRENT PLAN</p><h2 id="current-plan">—</h2>
+              <p class="muted" id="plan-details">Loading subscription…</p>
+              <div id="feature-list" class="feature-list"></div>
+              <button class="button button-primary" data-go="plans">Explore plans</button>
+            </article>
+          </div>
+          <article class="card feature-demo"><div><p class="eyebrow">PLAN ACCESS</p><h2>Advanced reports</h2><p class="muted">A sample protected feature that checks your plan entitlements.</p></div><button id="try-feature" class="button button-outline" type="button">Open feature</button></article>
+          <p id="account-message" class="notice" role="status"></p>
+        </section>
+
+        <section class="view hidden" id="view-plans">
+          <div class="section-heading"><div><p class="eyebrow">SIMPLE, FLEXIBLE PLANS</p><h2>Choose your orbit.</h2></div><p class="muted">Demo upgrades do not process payments.</p></div>
+          <div id="plans-grid" class="plans-grid"></div>
+          <p id="plans-message" class="notice" role="status"></p>
+        </section>
+
+        <section class="view hidden" id="view-admin">
+          <div class="section-heading"><div><p class="eyebrow">ADMINISTRATION</p><h2>Workspace overview</h2></div><button id="reload-users" class="button button-outline" type="button">Refresh users</button></div>
+          <div id="admin-stats" class="stats"></div>
+          <article class="card table-card"><div class="table-heading"><h3>Members</h3><input id="user-search" type="search" placeholder="Search email" aria-label="Search users"></div><div class="table-wrap"><table><thead><tr><th>Member</th><th>Plan</th><th>Status</th><th>Joined</th><th>Actions</th></tr></thead><tbody id="users-body"></tbody></table></div></article>
+          <p id="admin-message" class="notice" role="status"></p>
+        </section>
+      </section>
+      <footer>Orbit account platform <span>·</span> Built for secure, simple SaaS management</footer>
+    </main>
+    <script src="/app.js" defer></script>
+  </body>
+</html>
